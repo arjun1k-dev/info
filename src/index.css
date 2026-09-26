@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================================
+   PHOSPHOR LAB: design tokens
+   Dark: CRT oscilloscope bench · Light: blueprint drafting paper
+   ============================================================ */
+
+@theme {
+  /* Chakra Petch display · Instrument Sans body · IBM Plex Mono readouts */
+  --font-display: 'Chakra Petch', 'Instrument Sans', sans-serif;
+  --font-sans: 'Instrument Sans', -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Remap Tailwind blue → phosphor green (legacy classes reskin globally) */
+  --color-blue-50: #e9f7f0;
+  --color-blue-100: #d2efe1;
+  --color-blue-200: #a8dfc6;
+  --color-blue-300: #6fca9f;
+  --color-blue-400: #3ddc97;
+  --color-blue-500: #22c77e;
+  --color-blue-600: #14a864;
+  --color-blue-700: #0c8a52;
+  --color-blue-800: #0a6b41;
+  --color-blue-900: #0a5535;
+  --color-blue-950: #053321;
+
+  /* Remap Tailwind slate → green-graphite bench neutrals */
+  --color-slate-50: #f4f7f5;
+  --color-slate-100: #e6ebe8;
+  --color-slate-200: #cdd6d1;
+  --color-slate-300: #aebbb4;
+  --color-slate-400: #8b9c93;
+  --color-slate-500: #6d7f76;
+  --color-slate-600: #56665e;
+  --color-slate-700: #45524b;
+  --color-slate-800: #2c3833;
+  --color-slate-900: #1a241f;
+  --color-slate-950: #0d1512;
+
+  /* indigo → phosphor green (AcademicsSection legacy) */
+  --color-indigo-50: #e9f7f0;
+  --color-indigo-100: #d2efe1;
+  --color-indigo-200: #a8dfc6;
+  --color-indigo-300: #6fca9f;
+  --color-indigo-400: #3ddc97;
+  --color-indigo-500: #22c77e;
+  --color-indigo-600: #14a864;
+  --color-indigo-700: #0c8a52;
+  --color-indigo-800: #0a6b41;
+  --color-indigo-900: #0a5535;
+  --color-indigo-950: #053321;
+
+  /* purple → instrumentation amber (leadership legacy) */
+  --color-purple-50: #fdf6ec;
+  --color-purple-100: #f9e8d2;
+  --color-purple-200: #f2cf9f;
+  --color-purple-300: #e9b269;
+  --color-purple-400: #e09a3e;
+  --color-purple-500: #d98324;
+  --color-purple-600: #b45309;
+  --color-purple-700: #92400e;
+  --color-purple-800: #78350f;
+  --color-purple-900: #5c2a0c;
+  --color-purple-950: #3a1b08;
+}
+
+@layer base {
+  :root {
+    --font-geist: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-display: 'Chakra Petch', sans-serif;
+
+    /* blueprint paper */
+    --bg: #eef2ed;
+    --bg-raised: #f7faf6;
+    --panel: rgba(251, 253, 249, 0.92);
+    --ink: #101a14;
+    --ink-dim: #47594e;
+    --ink-faint: #6d7f76;
+    --phosphor: #0c8a52;
+    --phosphor-bright: #0aa461;
+    --phosphor-soft: rgba(12, 138, 82, 0.12);
+    --amber: #b45309;
+    --hairline: rgba(16, 26, 20, 0.18);
+    --grid-line: rgba(14, 100, 68, 0.075);
+    --grid-line-major: rgba(14, 100, 68, 0.14);
+    --scan-opacity: 0;
+  }
+
+  html.dark {
+    /* phosphor bench */
+    --bg: #050b09;
+    --bg-raised: #0a120e;
+    --panel: rgba(12, 20, 16, 0.88);
+    --ink: #cfe6d8;
+    --ink-dim: #86a897;
+    --ink-faint: #55705f;
+    --phosphor: #3ddc97;
+    --phosphor-bright: #7df3bd;
+    --phosphor-soft: rgba(61, 220, 151, 0.13);
+    --amber: #ffb648;
+    --hairline: rgba(150, 214, 180, 0.16);
+    --grid-line: rgba(61, 220, 151, 0.05);
+    --grid-line-major: rgba(61, 220, 151, 0.09);
+    --scan-opacity: 1;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  ::selection {
+    background: var(--phosphor);
+    color: #04120b;
+  }
+
+  :focus-visible {
+    outline: 1.5px solid var(--phosphor);
+    outline-offset: 2px;
+  }
+}
+
+/* ---------- type roles ---------- */
+
+.font-mono-code {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.font-display {
+  font-family: 'Chakra Petch', sans-serif;
+}
+
+/* ---------- backdrop: blueprint grid + scanlines + grain ---------- */
+
+.bg-dot-pattern {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(var(--grid-line-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line-major) 1px, transparent 1px);
+  background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
+}
+
+.scanlines {
+  opacity: var(--scan-opacity);
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(3, 12, 8, 0.35) 3px,
+    rgba(0, 0, 0, 0) 4px
+  );
+}
+
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+}
+
+/* vignette: CRT tube shading (dark) / paper depth (light) */
+.vignette {
+  background: radial-gradient(ellipse 120% 90% at 50% 0%, transparent 55%, rgba(0, 0, 0, 0.42) 100%);
+}
+
+html:not(.dark) .vignette {
+  background: radial-gradient(ellipse 120% 90% at 50% 0%, transparent 60%, rgba(30, 60, 45, 0.08) 100%);
+}
+
+/* ---------- panels & glass (names preserved, look rebuilt) ---------- */
+
+.glass-nav {
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(14px) saturate(1.1);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+}
+
+html.dark .glass-nav {
+  background: rgba(5, 11, 9, 0.78);
+}
+
+.glass-card {
+  background: var(--panel);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--hairline);
+}
+
+/* ---------- corner brackets (instrument bezels) ---------- */
+
+.corners {
+  position: relative;
+}
+
+.corners::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  --ck: var(--phosphor);
+  --cl: 12px;
+  --ct: 1.5px;
+  background-image:
+    linear-gradient(var(--ck), var(--ck)), linear-gradient(var(--ck), var(--ck)),
+    linear-gradient(var(--ck), var(--ck)), linear-gradient(var(--ck), var(--ck)),
+    linear-gradient(var(--ck), var(--ck)), linear-gradient(var(--ck), var(--ck)),
+    linear-gradient(var(--ck), var(--ck)), linear-gradient(var(--ck), var(--ck));
+  background-position:
+    0 0, 0 0,
+    100% 0, 100% 0,
+    0 100%, 0 100%,
+    100% 100%, 100% 100%;
+  background-size:
+    var(--cl) var(--ct), var(--ct) var(--cl),
+    var(--cl) var(--ct), var(--ct) var(--cl),
+    var(--cl) var(--ct), var(--ct) var(--cl),
+    var(--cl) var(--ct), var(--ct) var(--cl);
+  background-repeat: no-repeat;
+}
+
+.corners-amber::after {
+  --ck: var(--amber);
+}
+
+/* ---------- animated border beams (rec phosphor/amber) ---------- */
+
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes border-rotate {
+  0% { --border-angle: 0deg; }
+  100% { --border-angle: 360deg; }
+}
+
+.animated-border {
+  background:
+    linear-gradient(var(--bg-raised), var(--bg-raised)) padding-box,
+    conic-gradient(from var(--border-angle), var(--phosphor), var(--amber), var(--phosphor-bright), var(--phosphor)) border-box;
+  border: 1.5px solid transparent;
+  animation: border-rotate 6s linear infinite;
+}
+
+.animated-border-blue {
+  background:
+    linear-gradient(var(--bg-raised), var(--bg-raised)) padding-box,
+    conic-gradient(from var(--border-angle), var(--phosphor), var(--phosphor-bright), var(--phosphor)) border-box;
+  border: 1.5px solid transparent;
+  animation: border-rotate 5s linear infinite;
+}
+
+/* ---------- motion ---------- */
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float-slow 4s ease-in-out infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.blink {
+  animation: cursor-blink 1.1s step-end infinite;
+}
+
+@keyframes shimmer-glow {
+  0% { box-shadow: 0 0 14px rgba(61, 220, 151, 0.10); }
+  50% { box-shadow: 0 0 26px rgba(61, 220, 151, 0.28); }
+  100% { box-shadow: 0 0 14px rgba(61, 220, 151, 0.10); }
+}
+
+.animate-shimmer-glow {
+  animation: shimmer-glow 3s infinite;
+}
+
+@keyframes trace-draw {
+  from { stroke-dashoffset: 1200; }
+  to { stroke-dashoffset: 0; }
+}
+
+.trace-draw {
+  stroke-dasharray: 1200;
+  animation: trace-draw 2.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes scope-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+.scope-pulse {
+  animation: scope-pulse 2.2s ease-in-out infinite;
+}
+
+html:not(.dark) .text-glow {
+  text-shadow: none;
+}
+
+.text-glow {
+  text-shadow: 0 0 14px rgba(61, 220, 151, 0.45);
+}
+
+.card-hover-lift {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s;
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.35), 0 0 20px -6px rgba(61, 220, 151, 0.22);
+  border-color: var(--phosphor);
+}
+
+/* ---------- instrument buttons ---------- */
+
+.btn-scope {
+  font-family: 'IBM Plex Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  position: relative;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-scope::before,
+.btn-scope::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 1.5px;
+  background: var(--phosphor);
+  opacity: 0;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-scope::before { left: -14px; }
+.btn-scope::after { right: -14px; }
+
+.btn-scope:hover::before,
+.btn-scope:hover::after {
+  opacity: 1;
+}
+
+.btn-scope:hover::before { left: -10px; }
+.btn-scope:hover::after { right: -10px; }
+
+/* ---------- scrollbars ---------- */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--phosphor) 38%, transparent);
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--phosphor);
+}
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
