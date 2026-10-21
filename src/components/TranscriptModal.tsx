@@ -144,7 +144,7 @@ export const TranscriptModal: React.FC<TranscriptModalProps> = ({ isOpen, onClos
               <div className="p-3 bg-emerald-50/70 border border-emerald-200 rounded-sm flex items-center justify-between text-xs font-mono-code text-emerald-900">
                 <span className="flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-emerald-700" />
-                  <span>Academic Record Verified: COEP Technological University</span>
+                  <span>Academic Record Verified - COEP Technological University</span>
                 </span>
                 <span className="text-[10px] text-emerald-700 font-semibold">2025-2029 Cohort</span>
               </div>

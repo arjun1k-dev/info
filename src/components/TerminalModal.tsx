@@ -60,6 +60,8 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose })
         output = (
           <div className="space-y-1 text-emerald-200">
             <div className="text-white font-semibold">Available Commands:</div>
+            <div>  <span className="text-teal-300 font-bold">cat mathoxide.rs</span> - Inspect MathOxide Rust WGPU staging ring & FrameMemo</div>
+            <div>  <span className="text-teal-300 font-bold">mathoxide render</span> - Run simulated headless WGPU render pass for master.moa</div>
             <div>  <span className="text-teal-300 font-bold">cat overrun.ts</span> - Inspect OVERRUN loss-aversion time engine logic</div>
             <div>  <span className="text-teal-300 font-bold">cat reso.c</span>     - Inspect Resonance C object store & commit mechanics</div>
             <div>  <span className="text-teal-300 font-bold">reso status</span>   - Run simulated Resonance repository status check</div>
@@ -67,6 +69,43 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose })
             <div>  <span className="text-teal-300 font-bold">academics</span>     - Print COEP Technological University transcript records</div>
             <div>  <span className="text-teal-300 font-bold">contact</span>       - Display verified contact channels & recruiter kit</div>
             <div>  <span className="text-teal-300 font-bold">clear</span>         - Clear terminal window</div>
+          </div>
+        );
+        break;
+
+      case 'cat mathoxide.rs':
+        output = (
+          <pre className="text-purple-300 text-xs font-mono-code leading-relaxed bg-black/40 p-3 rounded-lg border border-purple-900/60 overflow-x-auto">
+{`// MathOxide: WGPU Staging Ring & Arc Zero-Copy Evaluation in Rust
+pub struct BufCache {
+    records: HashMap<u64, GpuBufferRecord>,
+    retired_pool: Vec<GpuBuffer>, // <= 4MB pool recycling
+    staging_ring: GpuBuffer,      // 16MB persistent staging buffer
+    staging_offset: u64,
+}
+
+impl BufCache {
+    pub fn stage_copy(&mut self, data: &[u8], dst: &GpuBuffer, dst_offset: u64, encoder: &mut GpuCommandEncoder) {
+        self.queue.write_buffer(&self.staging_ring, self.staging_offset, data);
+        encoder.copy_buffer_to_buffer(&self.staging_ring, self.staging_offset, dst, dst_offset, data.len() as u64);
+        self.staging_offset += align_256(data.len());
+    }
+}`}
+          </pre>
+        );
+        break;
+
+      case 'mathoxide render':
+      case 'mo render':
+        output = (
+          <div className="space-y-1 text-purple-200">
+            <div className="text-cyan-300">mo-cli :: Validating master.moa (6.5s composition)...</div>
+            <div className="text-white">Parsing 2 asset imports: [wave.moa at (0, 1.2), card.moa at (0, -0.5)]</div>
+            <div className="text-emerald-400 font-semibold">[Render Target] 1920x1080 @ 60 FPS (WGPU 24 headless)</div>
+            <div className="pl-4 text-purple-300">• Staging ring uploads: 4 misses (2.4 MB), 508 hits (99.2% cache rate)</div>
+            <div className="pl-4 text-purple-300">• FrameMemo LRU cache: 390 frames evaluated (0.38 ms avg per frame)</div>
+            <div className="pl-4 text-emerald-300">• FFmpeg H.264 stream: master.mp4 written successfully</div>
+            <div className="text-[11px] text-[#FFE066] mt-1">Memory usage: 24.8 MB VRAM / 88.4 MB RAM (0 Python dependencies).</div>
           </div>
         );
         break;

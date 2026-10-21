@@ -84,11 +84,20 @@ export const TELEMETRY_TABS_DATA: Record<FocusTab, FocusTabData> = {
     title: 'Systems Programming & Content-Addressed Storage',
     desc: "C, modern C++, POSIX/Linux, CMake. I rebuilt git's object model from scratch (Resonance) to actually understand it — not just use it.",
     badges: [
+      { text: '🦀 Pure Rust & WGPU', bg: 'bg-orange-100', textCol: 'text-orange-900', border: 'border-orange-300/60' },
       { text: '⚙️ C & CMake Build', bg: 'bg-emerald-100', textCol: 'text-emerald-900', border: 'border-emerald-300/60' },
       { text: '📦 SHA-1 & zlib VCS', bg: 'bg-teal-100', textCol: 'text-teal-900', border: 'border-teal-300/60' },
       { text: '🐧 Linux / POSIX Core', bg: 'bg-cyan-100', textCol: 'text-cyan-900', border: 'border-cyan-300/70' },
     ],
     bars: [
+      {
+        name: 'Rust & GPU Graphics (MathOxide Engine & Studio)',
+        val: '96%',
+        numericVal: 96,
+        detail: 'wgpu 24, WGSL shaders, LRU FrameMemo, egui Studio IDE, ~128 MB VRAM optimization',
+        meta: 'MathOxide IDE',
+        grad: 'from-orange-600 via-amber-500 to-emerald-500',
+      },
       {
         name: 'C Programming & POSIX System Calls',
         val: '92%',
@@ -131,11 +140,20 @@ export const TELEMETRY_TABS_DATA: Record<FocusTab, FocusTabData> = {
     title: 'Mathematics, Signals & Computational Analysis',
     desc: "Signals & systems, MATLAB, analog circuits — EE core. I taught the math-to-AI bridge to 11th-12th graders because teaching exposes every gap you have.",
     badges: [
+      { text: '📐 MathOxide Vector Animation', bg: 'bg-purple-100', textCol: 'text-purple-900', border: 'border-purple-300/70' },
       { text: '⚡ Signals & Systems', bg: 'bg-amber-100', textCol: 'text-amber-900', border: 'border-amber-300/70' },
       { text: '📊 Numerical MATLAB', bg: 'bg-teal-100', textCol: 'text-teal-900', border: 'border-teal-300/60' },
       { text: '🧠 AI ↔ Math Bridge', bg: 'bg-emerald-100', textCol: 'text-emerald-900', border: 'border-emerald-300/60' },
     ],
     bars: [
+      {
+        name: 'Mathematical Animation & Bézier Vector Calculus',
+        val: '96%',
+        numericVal: 96,
+        detail: 'Cubic Béziers, Riemann sums, Taylor expansions, 3D polar camera transforms, Typst math',
+        meta: 'MathOxide Engine',
+        grad: 'from-purple-600 via-pink-500 to-amber-500',
+      },
       {
         name: 'Signals and Systems (Transforms & Circuit Signals)',
         val: '92%',
@@ -352,3 +370,69 @@ export const RESONANCE_COMMANDS = [
     file: 'src/status.c',
   },
 ];
+
+export const MATHOXIDE_MODULES = [
+  {
+    id: 'gpu-ring',
+    name: 'GPU Staging Ring',
+    sub: '16 MB Buffer Streamer',
+    desc: 'Bypasses GPU allocation stalls on low-spec hardware (~128 MB VRAM). Cache misses pack into a persistent 16 MB ring buffer and copy before the render pass begins. Evicted buffers recycle into a bounded pool (≤4 MB) instead of dropping.',
+    metric: '64 MB Cache Budget',
+    code: `// mo-render: Persistent staging ring and bounded buffer pool
+pub fn stage_copy(&mut self, data: &[u8], dst: &GpuBuffer, dst_offset: u64, encoder: &mut GpuCommandEncoder) {
+    if self.staging_offset + data.len() > STAGING_CAP {
+        self.flush_staging_ring();
+    }
+    self.queue.write_buffer(&self.staging_ring, self.staging_offset, data);
+    encoder.copy_buffer_to_buffer(&self.staging_ring, self.staging_offset, dst, dst_offset, data.len() as u64);
+    self.staging_offset += align_256(data.len());
+}`,
+  },
+  {
+    id: 'dsl-engine',
+    name: '.moa DSL Engine',
+    sub: 'File-Relative Modular Parser',
+    desc: 'Declarative animation scripting with strict token purity (// for comments, # for hex colors). Top-of-file imports map assets to local origins (0, 0), while PlayOrigin tracks cross-file source lines for live timeline rewrites.',
+    metric: 'Zero-Python Runtime',
+    code: `// master.moa: Top-of-file imports & composite group animations
+import "assets/wave.moa" as wave at (0, 1.2);
+number_plane grid x_step=1.0 y_step=1.0 color=#4A009933;
+
+play showCreation(grid) 1.5s smooth;
+play drawBorderThenFill(wave) 2.0s smooth;
+camera polar phi=1.1 theta=0.6;
+play rotate(wave) 2.0s angle=3.14;`,
+  },
+  {
+    id: 'typst-vector',
+    name: 'Typst Vector Math',
+    sub: 'Subpath Path Extraction',
+    desc: 'Typesets crisp mathematical formulas via Typst without LaTeX CLI overhead or synthetic stroke distortion. TrueType fonts (Ubuntu, Hack, Noto) parse into quadratic/cubic Béziers for seamless morphing.',
+    metric: 'Sub-millisecond Math',
+    code: `// mo-core/src/svg.rs: LaTeX to Typst math rendering
+pub fn render_math(latex: &str, size: f32) -> Result<VGroup, MathError> {
+    let typst_src = format!("$ {} $", latex_to_typst(latex));
+    let doc = typst::compile(&typst_src)?;
+    let svg = typst_svg::render(&doc.pages[0]);
+    parse_svg_to_vgroup(&svg, size)
+}`,
+  },
+  {
+    id: 'timeline-memo',
+    name: 'FrameMemo LRU & Arc',
+    sub: '16K-Entry State Cache',
+    desc: 'Player::state_at evaluates immutable Arc<VGroup> refcounts instead of cloning point buffers. A 16,384-entry LRU cache keyed by (epoch, time_bits) turns playback loops and scrub revisits into instant cache hits.',
+    metric: '60 FPS Scrubbing',
+    code: `// mo-core/src/scene.rs: FrameMemo sample lookup
+pub fn state_at_cached(&mut self, tl: &Timeline, t: f32, epoch: u64) -> HashMap<String, Arc<VGroup>> {
+    let key = (epoch, t.to_bits());
+    if let Some(cached) = self.memo.get(&key) {
+        return cached.clone(); // Refcount bump only
+    }
+    let state = Player::state_at_indexed(tl, t, &self.index);
+    self.memo.insert(key, state.clone());
+    state
+}`,
+  },
+];
+

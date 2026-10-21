@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Terminal, FileText, Cpu, Zap, GraduationCap, Mail, Github, Linkedin, Moon, Sun, X, ArrowRight, CornerDownLeft } from 'lucide-react';
+import { Search, Terminal, FileText, Cpu, Zap, GraduationCap, Mail, Github, Linkedin, Moon, Sun, X, ArrowRight, CornerDownLeft, Sparkles } from 'lucide-react';
 import { PORTFOLIO_INFO } from '../data/portfolioData';
 
 interface CommandPaletteProps {
@@ -9,7 +9,7 @@ interface CommandPaletteProps {
   onOpenTerminal: () => void;
   onOpenPdfSpec: () => void;
   onOpenTranscript: () => void;
-  onOpenProjectSpec: (id: 'overrun' | 'resonance') => void;
+  onOpenProjectSpec: (id: 'overrun' | 'resonance' | 'mathoxide') => void;
   isDarkMode: boolean;
   onToggleTheme: () => void;
 }
@@ -62,6 +62,18 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         onOpenProjectSpec('resonance');
       },
       shortcut: '2',
+    },
+    {
+      id: 'proj-mathoxide',
+      category: 'Projects & Demos',
+      title: 'MathOxide: Pure-Rust Mathematical Animation Engine & Studio',
+      subtitle: 'Zero Python dependency, WebGPU/WGSL shaders, fixed Studio IDE, Manim CE built-ins',
+      icon: <Sparkles className="w-4 h-4 text-[#FFE066]" />,
+      action: () => {
+        onClose();
+        onOpenProjectSpec('mathoxide');
+      },
+      shortcut: '3',
     },
     {
       id: 'tool-terminal',

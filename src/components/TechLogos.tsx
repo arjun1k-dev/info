@@ -146,10 +146,28 @@ export const LogoCMake: React.FC<LogoProps> = ({ className = "w-5 h-5", size }) 
   </svg>
 );
 
+export const LogoRust: React.FC<LogoProps> = ({ className = "w-5 h-5", size }) => (
+  <svg viewBox="0 0 24 24" className={className} width={size} height={size} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="10" fill="#CE422B"/>
+    <circle cx="12" cy="12" r="5.5" fill="#0F172A"/>
+    <path d="M10 8.5H13C14.1 8.5 14.8 9.2 14.8 10.2C14.8 11 14.3 11.6 13.5 11.9L15 15H13.4L12.1 12.3H11.3V15H10V8.5ZM11.3 9.7V11.2H12.8C13.3 11.2 13.6 10.9 13.6 10.5C13.6 10 13.3 9.7 12.8 9.7H11.3Z" fill="#FFFFFF"/>
+  </svg>
+);
+
+export const LogoWebGPU: React.FC<LogoProps> = ({ className = "w-5 h-5", size }) => (
+  <svg viewBox="0 0 24 24" className={className} width={size} height={size} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="24" height="24" rx="4" fill="#0F172A"/>
+    <path d="M5 16L12 6L19 16H5Z" stroke="#00FFF7" strokeWidth="1.6" strokeLinejoin="round" fill="none"/>
+    <circle cx="12" cy="12.5" r="2" fill="#FF00A8"/>
+  </svg>
+);
+
 // Map helper to fetch SVG by tech name string
 export const TechLogo: React.FC<{ name: string; className?: string; size?: number }> = ({ name, className = "w-5 h-5", size }) => {
   const normalized = name.toLowerCase().trim();
 
+  if (normalized.includes('rust')) return <LogoRust className={className} size={size} />;
+  if (normalized.includes('webgpu') || normalized.includes('wgpu')) return <LogoWebGPU className={className} size={size} />;
   if (normalized.includes('typescript') || normalized === 'ts') return <LogoTypeScript className={className} size={size} />;
   if (normalized.includes('javascript') || normalized === 'js') return <LogoJavaScript className={className} size={size} />;
   if (normalized.includes('react')) return <LogoReact className={className} size={size} />;

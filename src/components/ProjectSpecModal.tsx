@@ -3,9 +3,10 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, Code2, Cpu, Check, Copy, ExternalLink, GitBranch, Clock, Terminal, Sparkles, Play } from 'lucide-react';
 import { ResonanceVisualizer } from './ResonanceVisualizer';
 import { OverrunVisualizer } from './OverrunVisualizer';
+import { MathoxideVisualizer } from './MathoxideVisualizer';
 
 interface ProjectSpecModalProps {
-  projectId: 'overrun' | 'resonance' | null;
+  projectId: 'overrun' | 'resonance' | 'mathoxide' | null;
   onClose: () => void;
   onOpenTerminal: () => void;
 }
@@ -19,8 +20,6 @@ export const ProjectSpecModal: React.FC<ProjectSpecModalProps> = ({
   const [copied, setCopied] = useState(false);
 
   if (!projectId) return null;
-
-  const isResonance = projectId === 'resonance';
 
   const overrunContent = {
     spec: `// ============================================================================
@@ -166,7 +165,78 @@ Confirmed Next Wave of Features (Roadmap):
 - Diff Engine (comparing working tree, index, and commit objects)`,
   };
 
-  const content = isResonance ? resonanceContent : overrunContent;
+  const mathoxideContent = {
+    spec: `// ============================================================================
+// MATHOXIDE: SYSTEM SPECIFICATION & ARCHITECTURE
+// ============================================================================
+// Pure-Rust Mathematical Animation Engine, Studio IDE & Agentic Media Suite
+// Zero Python runtime dependencies | Optimized for low-spec iGPU (~128 MB VRAM)
+// Crates: mo-core, mo-render, mo-dsl, mo-moab, mo-ide, mo-interactive, mo-cli, mo-mcp
+//
+// +------------------------+      +------------------------+      +------------------------+
+// | .moa Script Source     | ---> | mo-dsl Parser          | ---> | mo-core Scene Graph    |
+// | (Declarative grammar)  |      | (File-relative imports)|      | (VGroup Bézier paths)  |
+// +------------------------+      +------------------------+      +------------------------+
+//                                                                             |
+//                                                                             v
+// +------------------------+      +------------------------+      +------------------------+
+// | Fixed-Layout IDE       | <--- | mo-render WGPU Pipeline| <--- | FrameMemo LRU Cache    |
+// | (egui Studio & Gizmos) |      | (16MB Staging Ring)    |      | (16,384 Arc states)    |
+// +------------------------+      +------------------------+      +------------------------+
+//              |
+//              +---> Headless CLI (\`mo render / compile / inspect\`)
+//              +---> AI Agent JSON-RPC stdio server (\`mo-mcp\`)`,
+    code: `// mo-core: Arc Scene State & Player Evaluation
+use std::sync::Arc;
+use std::collections::HashMap;
+use crate::vgroup::VGroup;
+
+pub struct TimelineIndex {
+    decl_base: HashMap<String, Arc<VGroup>>,
+    intro_decls: Vec<(String, Arc<VGroup>, f32)>,
+    baked_final: std::cell::RefCell<HashMap<usize, Arc<VGroup>>>,
+}
+
+impl Player {
+    /// Sample scene state at time \`t\` using precomputed timeline index.
+    /// Clones Arc refcounts (0 ms memory copy), not point data buffers.
+    pub fn state_at_indexed(tl: &Timeline, t: f32, idx: &TimelineIndex) -> HashMap<String, Arc<VGroup>> {
+        let mut state = idx.decl_base.clone(); // Arc refcount bumps only!
+        for (id, obj, intro_t) in &idx.intro_decls {
+            if t >= *intro_t {
+                state.insert(id.clone(), obj.clone());
+            }
+        }
+        for (i, stmt) in tl.stmts.iter().enumerate() {
+            if let Stmt::Play(timed_anim) = stmt {
+                if let Some(sample) = sample_animation(timed_anim, &state, t) {
+                    state.insert(timed_anim.anim.target_id().to_string(), Arc::new(sample));
+                }
+            }
+        }
+        state
+    }
+}`,
+    roadmap: `MATHOXIDE VERIFICATION & ARCHITECTURAL AUDIT
+- Test Suite: 77 passing workspace unit tests, 0 compiler warnings
+  * mo-core: 36 passed (Bézier curves, FFT, complex analysis, Arc state, calculus)
+  * mo-dsl: 17 passed (syntax lowering, modular imports, 3D primitives, camera)
+  * mo-ide: 20 passed (synthetic preview, inline edit, timeline apply, autocomplete)
+  * mo-moab: 2 passed (postcard binary container round-trip)
+  * mo-render: 2 passed (WGPU vector text, renderer initialization)
+- Hardware Constraints:
+  * Strict low-VRAM memory cap (< 128 MB VRAM budget for standard laptop iGPU)
+  * 16 MB persistent staging ring buffer for zero-stall GPU uploads
+  * 64 MB buffer cache pool with budget-based LRU retirement
+- Direction & Next Steps:
+  * Directional lighting / normal-based shading for filled surface3d
+  * Interactive camera anims in headless winit preview
+  * Multi-level undo/redo in Studio IDE`,
+  };
+
+  const isMathoxide = projectId === 'mathoxide';
+  const isResonance = projectId === 'resonance';
+  const content = isMathoxide ? mathoxideContent : isResonance ? resonanceContent : overrunContent;
 
   const handleCopy = () => {
     if (activeCodeTab === 'interactive') return;
@@ -188,24 +258,54 @@ Confirmed Next Wave of Features (Roadmap):
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}
           transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.3 }}
-          className="w-full max-w-5xl bg-[#031510] text-white rounded-sm shadow-2xl border border-emerald-700/50 overflow-hidden flex flex-col max-h-[92vh]"
+          className={`w-full max-w-5xl text-white rounded-sm shadow-2xl overflow-hidden flex flex-col max-h-[92vh] ${
+            isMathoxide
+              ? 'bg-[#05001A] border-2 border-purple-700/60'
+              : 'bg-[#031510] border border-emerald-700/50'
+          }`}
         >
           {/* Header */}
-          <div className="px-6 py-4 bg-[#020e0c] border-b border-emerald-900/60 flex items-center justify-between">
+          <div
+            className={`px-6 py-4 border-b flex items-center justify-between ${
+              isMathoxide
+                ? 'bg-[#0A002B] border-purple-900/70'
+                : 'bg-[#020e0c] border-emerald-900/60'
+            }`}
+          >
             <div className="flex items-center gap-3">
-              <span className="w-10 h-10 rounded-sm bg-emerald-950 text-emerald-300 flex items-center justify-center border border-emerald-600/50 shadow-xs">
-                {isResonance ? <GitBranch className="w-5 h-5 text-emerald-400" /> : <Clock className="w-5 h-5 text-emerald-400" />}
+              <span
+                className={`w-10 h-10 rounded-sm flex items-center justify-center border shadow-xs ${
+                  isMathoxide
+                    ? 'bg-purple-950 text-[#FFE066] border-purple-600/50'
+                    : 'bg-emerald-950 text-emerald-300 border border-emerald-600/50'
+                }`}
+              >
+                {isMathoxide ? (
+                  <Sparkles className="w-5 h-5 text-[#FFE066]" />
+                ) : isResonance ? (
+                  <GitBranch className="w-5 h-5 text-emerald-400" />
+                ) : (
+                  <Clock className="w-5 h-5 text-emerald-400" />
+                )}
               </span>
               <div>
                 <h3 className="font-display font-bold text-lg text-white flex items-center gap-2">
                   <span>
-                    {isResonance
+                    {isMathoxide
+                      ? 'MathOxide: Pure-Rust Animation Engine & Studio'
+                      : isResonance
                       ? 'Resonance (reso): Content-Addressable VCS in C'
                       : 'OVERRUN: AI Academic Command Center'}
                   </span>
                 </h3>
-                <span className="font-mono-code text-xs text-emerald-400/80">
-                  {isResonance
+                <span
+                  className={`font-mono-code text-xs ${
+                    isMathoxide ? 'text-[#00FFF7]' : 'text-emerald-400/80'
+                  }`}
+                >
+                  {isMathoxide
+                    ? 'Pure Rust • WGPU 24 • WGSL Shaders • egui Studio IDE • Zero Python'
+                    : isResonance
                     ? 'POSIX / Linux • CMake • SHA-1 • zlib Fan-Out Store'
                     : 'Next.js 15 • React 19 • SQLite + Prisma • Bun'}
                 </span>
@@ -293,9 +393,21 @@ Confirmed Next Wave of Features (Roadmap):
           {/* Modal Body View */}
           <div className="flex-1 p-4 sm:p-6 overflow-y-auto bg-[#031510]">
             {activeCodeTab === 'interactive' ? (
-              isResonance ? <ResonanceVisualizer /> : <OverrunVisualizer />
+              isMathoxide ? (
+                <MathoxideVisualizer />
+              ) : isResonance ? (
+                <ResonanceVisualizer />
+              ) : (
+                <OverrunVisualizer />
+              )
             ) : (
-              <pre className="whitespace-pre overflow-x-auto text-emerald-200 font-mono-code text-xs leading-relaxed bg-[#020e0c] p-4 rounded-sm border border-emerald-900/80">
+              <pre
+                className={`whitespace-pre overflow-x-auto font-mono-code text-xs leading-relaxed p-4 rounded-sm border ${
+                  isMathoxide
+                    ? 'text-[#00FFF7] bg-[#02000D] border-purple-900/80'
+                    : 'text-emerald-200 bg-[#020e0c] border-emerald-900/80'
+                }`}
+              >
                 <code>{content[activeCodeTab]}</code>
               </pre>
             )}

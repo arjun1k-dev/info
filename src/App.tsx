@@ -19,7 +19,7 @@ export default function App() {
   const [isTranscriptOpen, setIsTranscriptOpen] = useState(false);
   const [isPgpOpen, setIsPgpOpen] = useState(false);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
-  const [specModalProjectId, setSpecModalProjectId] = useState<'overrun' | 'resonance' | null>(null);
+  const [specModalProjectId, setSpecModalProjectId] = useState<'overrun' | 'resonance' | 'mathoxide' | null>(null);
 
   // Theme Management (Phosphor bench dark by default; light = blueprint paper)
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
