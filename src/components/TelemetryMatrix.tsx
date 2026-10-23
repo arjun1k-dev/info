@@ -73,7 +73,7 @@ export const TelemetryMatrix: React.FC<TelemetryMatrixProps> = ({ onOpenTerminal
               What I Actually Work With
             </h2>
             <p className="text-sm md:text-base text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
-              No skill percentages pulled from thin air — each domain maps to things I've shipped. Switch tabs to inspect.
+              No skill percentages pulled from thin air — each domain maps to things I've actually built. Switch tabs to inspect.
             </p>
           </div>
 

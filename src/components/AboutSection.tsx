@@ -34,15 +34,15 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenTerminal, onOp
     },
     {
       value: '96%',
-      label: 'Telemetry Match',
+      label: 'Technical Depth',
       sub: 'Backend & Systems Rigor',
       icon: Smile,
       color: 'bg-teal-100 text-teal-900 border-teal-300 dark:bg-teal-950 dark:text-teal-300 dark:border-teal-800',
     },
     {
       value: '3+',
-      label: 'Leadership Roles',
-      sub: 'MindSpark & PSF Web Lead',
+      label: 'Campus Initiatives',
+      sub: 'MindSpark & PSF Coordinator (1 of 8)',
       icon: Trophy,
       color: 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-950 dark:text-amber-300 dark:border-amber-800',
     },
@@ -74,7 +74,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenTerminal, onOp
           </p>
 
           <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-            Built <em>OVERRUN</em> because I procrastinate and wanted the cost to be visible. Rebuilt git's core in C (<em>Resonance</em>) because I wanted to know how it actually works. Run web teams for national fests because deadlines are real and shipping is the only proof.
+            Built <em>OVERRUN</em> because I procrastinate and wanted the cost to be visible. Rebuilt git's core in C (<em>Resonance</em>) because I wanted to know how it actually works. Coordinate web platforms for national fests alongside 7 other coordinators — because deadlines are real and delivering reliable software is what counts.
           </p>
 
           <div className="pt-2 flex flex-wrap items-center gap-4">

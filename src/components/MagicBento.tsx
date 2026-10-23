@@ -103,13 +103,13 @@ export const DEFAULT_LIGHT_CARDS: BentoCardProps[] = [
     color: 'var(--bg-raised)',
     borderColor: 'var(--hairline)',
     glowColor: '4, 120, 87', // Emerald
-    title: 'Leadership & Web Engineering',
-    description: 'Coordinated web infrastructure and digital platforms for major technical fests MindSpark & Pune Startup Fest.',
-    label: '05 / Leadership',
-    badge: '3+ Tech Fests',
+    title: 'Web Team Coordination',
+    description: 'Web team coordinator across major technical fests MindSpark & Pune Startup Fest, collaborating in an 8-member coordination team.',
+    label: '05 / Coordination',
+    badge: 'Tech Fest Team',
     techs: ['React', 'TypeScript', 'Tailwind'],
     icon: <Trophy className="w-5 h-5 text-emerald-700" />,
-    metric: 'COEP Lead',
+    metric: 'COEP Coordinator',
   },
   {
     color: 'var(--bg-raised)',

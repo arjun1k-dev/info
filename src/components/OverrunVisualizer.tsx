@@ -87,7 +87,7 @@ $$y(t) = x(t) * h(t) = \\int_{-\\infty}^{\\infty} x(\\tau) h(t - \\tau) d\\tau$$
           <div className="lg:col-span-6 bg-[#020d0a] rounded-sm border border-emerald-900/60 p-5 space-y-5">
             <h4 className="text-sm font-bold text-white font-display flex items-center gap-2">
               <Clock className="w-4 h-4 text-emerald-400" />
-              <span>Interactive Session Telemetry Controls</span>
+              <span>Interactive Session Controls</span>
             </h4>
 
             {/* Target vs Actual Sliders */}
@@ -154,7 +154,7 @@ $$y(t) = x(t) * h(t) = \\int_{-\\infty}^{\\infty} x(\\tau) h(t - \\tau) d\\tau$$
               <div className="flex items-center justify-between border-b border-emerald-900/60 pb-3 mb-4">
                 <span className="font-mono-code text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
                   <Award className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Time Bank Telemetry Output</span>
+                  <span>Time Bank Session Output</span>
                 </span>
                 <span className="text-[11px] font-mono-code text-emerald-400/80">
                   Loss-Aversion State

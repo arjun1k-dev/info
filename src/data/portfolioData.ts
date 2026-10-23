@@ -21,9 +21,9 @@ export const PORTFOLIO_INFO = {
   status: 'looking for software/backend internships',
   mailtoLink: 'mailto:arjun1k.dev@gmail.com?subject=[Internship%20Referral]%20Software%20Engineering%20Role',
   summary:
-    'EE undergrad at COEP. I write C, Python and TypeScript because I want to control what happens, not just use what exists. Most of what I build starts as a tool for a problem I personally have — then it ships.',
+    'EE undergrad at COEP. I write C, Python and TypeScript because I want to control what happens, not just use what exists. Most of what I build starts as a tool for a problem I personally have — and then I build it out.',
   recruiterBio:
-    "I'm Arjun — Electrical Engineering undergrad at COEP (2025-2029, 7.32 CGPA). I work in C/C++, Python, TypeScript, Next.js and FastAPI, and I run web teams for MindSpark and Pune Startup Fest. I build things to understand them — rebuilding git's core in C taught me more than any tutorial could.",
+    "I'm Arjun — Electrical Engineering undergrad at COEP (2025-2029, 7.32 CGPA). I work in C/C++, Python, TypeScript, Next.js and FastAPI, and I'm a web team coordinator for MindSpark and Pune Startup Fest (one of 8 coordinators). I build things to understand them — rebuilding git's core in C taught me more than any tutorial could.",
   portraitUrl:
     ProfilePic,
 };
@@ -35,7 +35,7 @@ export const TELEMETRY_TABS_DATA: Record<FocusTab, FocusTabData> = {
     label: 'Backend & Web Match',
     offset: 20,
     title: 'Modern Full-Stack & Backend Systems',
-    desc: 'TypeScript, Next.js 15 App Router, React 19, FastAPI microservices, offline-first SQLite/Prisma. This is where I ship.',
+    desc: 'TypeScript, Next.js 15 App Router, React 19, FastAPI microservices, offline-first SQLite/Prisma. This is my primary tech stack.',
     badges: [
       { text: '✓ Next.js 15 & React 19', bg: 'bg-emerald-100', textCol: 'text-emerald-900', border: 'border-emerald-300/60' },
       { text: '✓ FastAPI & Python', bg: 'bg-teal-100', textCol: 'text-teal-900', border: 'border-teal-300/60' },
@@ -197,9 +197,9 @@ export const LEADERSHIP_ROLES: LeadershipRole[] = [
     category: 'Annual National Technical Fest',
     badgeGrad: 'from-emerald-600 to-teal-600',
     description:
-      "I coordinate the web team for COEP's national tech fest — UI/UX calls, architecture planning, and making sure the teams actually ship.",
+      "Part of the 8-member web coordination team for COEP's national tech fest — handling UI/UX calls, architecture planning, and helping deliver web platforms for the event.",
     stack: 'UI/UX Design, Web Architecture, Coordination',
-    metric: 'National Tech Fest',
+    metric: 'Web Coordinator (1 of 8)',
   },
   {
     title: 'Web Team Coordinator',
@@ -207,9 +207,9 @@ export const LEADERSHIP_ROLES: LeadershipRole[] = [
     category: 'Flagship Entrepreneurship Fest',
     badgeGrad: 'from-teal-600 to-cyan-600',
     description:
-      'Running web coordination for the flagship edition — digital assets, UX flow, shipping on a deadline.',
+      'One of 8 web coordinators for the flagship edition — managing digital assets, UX flow, and collaborating with the team to deliver on tight deadlines.',
     stack: 'Digital Assets, UX Planning, Web Coordination',
-    metric: 'Flagship Fest Lead',
+    metric: 'Web Coordinator (1 of 8)',
   },
   {
     title: 'Web Team Volunteer',
@@ -229,7 +229,7 @@ export const LEADERSHIP_ROLES: LeadershipRole[] = [
     description:
       'I designed and ran a workshop for 11th-12th graders on how linear algebra, calculus and computational thinking actually connect to AI. Teaching it exposed every gap I had — that was the point.',
     stack: 'AI ↔ Math Pedagogy, Computational Thinking',
-    metric: 'Bridge Workshop Lead',
+    metric: 'Workshop Speaker & Mentor',
   },
 ];
 
@@ -312,7 +312,7 @@ async function syncObsidianVault(dirHandle, prismaDb) {
   },
   {
     id: 'syllabus-map',
-    name: 'Syllabus Telemetry',
+    name: 'Syllabus Mapping',
     sub: '9 Core Subjects',
     desc: '9 core subjects mapped with weightages. NotebookLM quiz gaps route straight to targeted revision tasks. I don\'t study blindly — the map tells me where it hurts.',
     metric: '9 Subject Registry',

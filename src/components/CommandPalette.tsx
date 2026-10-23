@@ -43,7 +43,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       id: 'proj-overrun',
       category: 'Projects & Demos',
       title: 'OVERRUN: Loss-Aversion Time Bank & Command Center',
-      subtitle: 'Next.js 15, Prisma, SQLite, Obsidian Vault Scanner & Syllabus Telemetry',
+      subtitle: 'Next.js 15, Prisma, SQLite, Obsidian Vault Scanner & Syllabus Mapping',
       icon: <Zap className="w-4 h-4 text-emerald-500" />,
       action: () => {
         onClose();

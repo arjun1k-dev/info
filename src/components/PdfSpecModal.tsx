@@ -34,18 +34,18 @@ TECHNICAL SKILLS
 PROJECTS (ACTIVE PROTOTYPING)
 1. OVERRUN: AI-Driven Autonomous Academic Command Center & Loss-Aversion Time Engine
    - Full-stack web application & offline-first academic operating system (Next.js 15, React 19, SQLite, Prisma, TypeScript).
-   - Loss-Aversion Time Bank currency engine turning study minutes into finite surplus/debt with live focus session telemetry.
+   - Loss-Aversion Time Bank currency engine turning study minutes into finite surplus/debt with live focus session tracking.
    - Zero-token Obsidian Markdown vault sync via Web File System Access API with 0 LLM token cost.
-   - 9-subject engineering syllabus telemetry and NotebookLM quiz gap routing.
+   - 9-subject engineering syllabus mapping and NotebookLM quiz gap routing.
 
 2. Resonance (reso): Content-Addressable Version Control System in C
    - From-scratch version control system written in C (CMake-built, POSIX/Linux) modeled on Git's internal object store.
    - SHA-1 content-addressed, zlib-compressed object store (.reso/objects/) with blob, tree, and commit primitives.
    - Implemented write path: setup (init), hash-object, stage (add), snapshot (commit), status, and linked commit chain DAG.
 
-LEADERSHIP & CAMPUS INITIATIVES
-- Web Team Coordinator: MindSpark '26 (Annual National Technical Fest, COEP Tech)
-- Web Team Coordinator: Pune Startup Fest '27 (Flagship Entrepreneurship Fest, COEP Tech)
+CAMPUS INITIATIVES & ROLES
+- Web Team Coordinator: MindSpark '26 (Annual National Technical Fest, COEP Tech - 1 of 8 coordinators)
+- Web Team Coordinator: Pune Startup Fest '27 (Flagship Entrepreneurship Fest, COEP Tech - 1 of 8 coordinators)
 - Web Team Volunteer: Pune Startup Fest '26 (COEP Tech)
 - Technical Speaker & Mentor (Freelanced): Devadhar Classes (Conducted AI <-> Mathematics bridge workshop for high school students)`;
 
@@ -195,7 +195,7 @@ LEADERSHIP & CAMPUS INITIATIVES
                       <ul className="list-disc list-inside mt-1 space-y-0.5 text-slate-700">
                         <li>Loss-Aversion Time Bank calculates real-time time surpluses/debts and XP rewards based on planned vs actual focus sessions.</li>
                         <li>Zero-Token Vault Sync directly scans local Obsidian Markdown vaults & YAML frontmatter into SQLite at $0 LLM token cost.</li>
-                        <li>Hierarchical subject telemetry across 9 engineering courses with NotebookLM quiz gap routing and automated EOD markdown logs.</li>
+                        <li>Hierarchical subject mapping across 9 engineering courses with NotebookLM quiz gap routing and automated EOD markdown logs.</li>
                       </ul>
                     </div>
 
@@ -216,30 +216,30 @@ LEADERSHIP & CAMPUS INITIATIVES
                   </div>
                 </div>
 
-                {/* Campus Leadership & Initiatives */}
+                {/* Campus Initiatives & Coordination */}
                 <div>
                   <h3 className="font-mono-code text-xs font-bold uppercase tracking-wider text-slate-950 border-b border-slate-200 pb-1 mb-3">
-                    Leadership & Campus Initiatives
+                    Campus Initiatives & Coordination
                   </h3>
 
                   <div className="space-y-3">
                     <div>
                       <div className="flex items-center justify-between font-bold text-slate-950">
-                        <span>Web Team Coordinator: MindSpark '26</span>
+                        <span>Web Team Coordinator (1 of 8): MindSpark '26</span>
                         <span className="font-mono-code text-[11px] text-emerald-800">Annual National Technical Fest</span>
                       </div>
                       <p className="text-slate-600 mt-0.5">
-                        Contributed UI/UX design suggestions, architectural planning, and inter-team execution for COEP Tech's national technical festival.
+                        Contributed UI/UX design suggestions, architectural planning, and inter-team coordination for COEP Tech's national technical festival as one of 8 coordinators.
                       </p>
                     </div>
 
                     <div>
                       <div className="flex items-center justify-between font-bold text-slate-950">
-                        <span>Web Team Coordinator: Pune Startup Fest '27</span>
+                        <span>Web Team Coordinator (1 of 8): Pune Startup Fest '27</span>
                         <span className="font-mono-code text-[11px] text-emerald-800">Flagship Entrepreneurship Fest</span>
                       </div>
                       <p className="text-slate-600 mt-0.5">
-                        Spearheading digital asset planning, user experience flow, and web coordination for the fest. (Also served as Web Team Volunteer for PSF '26).
+                        Coordinating digital asset planning, user experience flow, and web delivery as one of 8 coordinators for the fest. (Also served as Web Team Volunteer for PSF '26).
                       </p>
                     </div>
 

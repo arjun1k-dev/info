@@ -199,7 +199,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                     <strong>Zero-Token Obsidian Sync:</strong> Scans local Markdown vaults and YAML frontmatter via Web File System Access API directly into local SQLite at zero token cost.
                   </li>
                   <li>
-                    <strong>Syllabus Telemetry & Quiz Routing:</strong> Maps weightages across 9 core engineering subjects and routes NotebookLM quiz gaps into targeted revision tasks.
+                    <strong>Syllabus Mapping & Quiz Routing:</strong> Maps weightages across 9 core engineering subjects and routes NotebookLM quiz gaps into targeted revision tasks.
                   </li>
                 </ul>
               </div>

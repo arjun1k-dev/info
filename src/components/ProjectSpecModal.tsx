@@ -38,7 +38,7 @@ export const ProjectSpecModal: React.FC<ProjectSpecModalProps> = ({
 //                                                                   |
 //                                                                   v
 // +--------------------+      +--------------------+      +--------------------+
-// | Loss-Aversion      | <--- | Tactical Timeline  | <--- | Subject Telemetry  |
+// | Loss-Aversion      | <--- | Tactical Timeline  | <--- | Syllabus Mapping   |
 // | Time Bank (Debt)   |      | & Collision Engine |      | (9 Core Subjects)  |
 // +--------------------+      +--------------------+      +--------------------+`,
     code: `// OVERRUN Core Engine: Time Bank & Zero-Token Sync

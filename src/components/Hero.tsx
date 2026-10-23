@@ -61,7 +61,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenTranscript, on
               <span className="text-[var(--ink-dim)] text-3xl sm:text-4xl lg:text-[2.6rem] font-semibold">
                 builds systems
               </span>{' '}
-              <span className="text-[var(--amber)]">that ship.</span>
+              <span className="text-[var(--amber)]">that work.</span>
             </h1>
             <p className="text-base sm:text-lg text-[var(--ink-dim)] max-w-2xl leading-relaxed font-normal">
               EE undergrad at{' '}
@@ -74,7 +74,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenTranscript, on
                 COEP Technological University
               </a>
               . I write C, Python and TypeScript — not to pad a resume, but because I want to
-              control what happens, not just use what exists. Most of what I ship started as a
+              control what happens, not just use what exists. Most of what I build started as a
               tool for a problem I personally had.
             </p>
           </div>

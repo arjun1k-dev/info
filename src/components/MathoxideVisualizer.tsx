@@ -541,7 +541,7 @@ export const MathoxideVisualizer: React.FC = () => {
           {/* Memory Budget & Hardware Constraints Table */}
           <div className="p-5 rounded-sm bg-[#0A002B]/90 border-2 border-purple-800 font-mono-code text-xs space-y-3">
             <div className="flex items-center justify-between font-bold text-white border-b border-purple-800/80 pb-2">
-              <span>HARDWARE OPTIMIZATION TELEMETRY (LOW-VRAM BUDGET)</span>
+              <span>HARDWARE OPTIMIZATION PROFILE (LOW-VRAM BUDGET)</span>
               <span className="text-[#00FF9D]">TARGET: ~128 MB VRAM / STANDARD iGPU</span>
             </div>
 

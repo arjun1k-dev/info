@@ -362,7 +362,7 @@ export const AcademicsSection: React.FC<AcademicsSectionProps> = ({ onOpenTransc
           <div className="space-y-1 mb-1">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-purple-500/10 dark:bg-purple-500/20 border border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300 w-fit font-mono-code text-xs font-bold uppercase tracking-wider">
               <Users className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-              <span>Leadership & Campus Initiatives</span>
+              <span>Campus Initiatives & Roles</span>
             </div>
             <h3 className="font-display text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">
               Technical Fests & Academic Mentorship
